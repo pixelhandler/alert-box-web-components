@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Alert Box</title>
+  <link rel="import" href="../index.html">
+  <link rel="stylesheet" href="./assets/style.css">
+  <script src="../bower_components/jquery/dist/jquery.min.js"></script>
+  <script src="../bower_components/handlebars/handlebars.min.js"></script>
+  <script src="../bower_components/ember/ember.min.js"></script>
+</head>
+<body>
+
+  <script type="text/x-handlebars">
+    <h2>Alert Box</h2>
+    <form {{action "reset" newCount on="submit"}}>
+      <label>Countdown</label>
+      {{input type="number" value=newCount}}
+    </form>
+
+    {{outlet}}
+
+    {{outlet alerts}}
+  </script>
+
+  <script type="text/x-handlebars" data-template-name="index">
+    <button {{action "showAlertBox" "info"}}>Show Info Alert Box</button>
+    <button {{action "showAlertBox" "success"}}>Show Success Alert Box</button>
+    <button {{action "showAlertBox" "warning"}}>Show Warning Alert Box</button>
+    <button {{action "showAlertBox" "danger"}}>Show Danger Alert Box</button>
+    <button {{action "showAlertBox" "fail"}}>Show Fail Alert Box</button>
+
+    {{#each alertBox in model}}
+      {{partial alertBox.templateName}}
+    {{/each}}
+
+    {{outlet}}
+  </script>
+
+  <script type="text/x-handlebars" data-template-name="alert-box-info">
+    <alert-box type="info">
+      <p class="message">Info Alert Box.</p>
+      <icon-info class="icon"></icon-info>
+      <icon-x class="close"></icon-x>
+    </alert-box>
+  </script>
+
+  <script type="text/x-handlebars" data-template-name="alert-box-success">
+    <alert-box type="success">
+      <p class="message">Success Alert Box.</p>
+      <icon-success class="icon"></icon-success>
+      <icon-x class="close"></icon-x>
+    </alert-box>
+  </script>
+
+  <script type="text/x-handlebars" data-template-name="alert-box-warning">
+    <alert-box type="warning">
+      <p class="message">Warning Alert Box.</p>
+      <icon-warning class="icon"></icon-warning>
+      <icon-x class="close"></icon-x>
+    </alert-box>
+  </script>
+
+  <script type="text/x-handlebars" data-template-name="alert-box-danger">
+    <alert-box type="danger">
+      <p class="message">Danger Alert Box.</p>
+      <icon-danger class="icon"></icon-danger>
+      <icon-x class="close"></icon-x>
+    </alert-box>
+  </script>
+
+  <script type="text/x-handlebars" data-template-name="alert-box-fail">
+    <alert-box type="fail">
+      <p class="message">Fail Alert Box.</p>
+      <icon-fail class="icon"></icon-fail>
+      <span class="close">Oh, well.</span>
+    </alert-box>
+  </script>
+
+  <script type="text/x-handlebars" data-template-name="countdown-warning">
+    <alert-box class="fixed" type="warning" {{bind-attr data-minutes=minutes data-seconds=seconds}}>
+      <p class="message">
+        Warning Alert Box w/ Countdown:<br>
+        <span class="minutes">{{minutes}}</span> minutes 
+        <span class="seconds">{{seconds}}</span> seconds.
+      </p>
+      <icon-warning class="icon"></icon-warning>
+      <icon-x class="close"></icon-x>
+    </alert-box>
+  </script>
+
+  <script type="text/x-handlebars" data-template-name="countdown-info">
+    <alert-box class="fixed" type="info">
+      <p class="message">Info Alert Box, Countdown is Over.</p>
+      <icon-info class="icon"></icon-info>
+      <icon-x class="close"></icon-x>
+    </alert-box>
+  </script>
+
+  <script src="./assets/app.js"></script>
+
+</body>
+</html>

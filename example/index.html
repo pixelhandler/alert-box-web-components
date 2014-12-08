@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Alert Box</title>
+  <link rel="import" href="../index.html">
+  <link rel="stylesheet" href="./assets/style.css">
+</head>
+<body>
+  <h1>Alert Box</h1>
+
+  <alert-box id="countdown-warning" class="fixed" type="warning">
+    <p class="message">
+      Warning Alert Box w/ Countdown:<br>
+      <span class="minutes">X</span> minutes <span class="seconds">X</span> seconds.
+    </p>
+    <icon-warning class="icon"></icon-warning>
+    <icon-x class="close"></icon-x>
+  </alert-box>
+
+  <template id="countdown-info">
+    <p class="message">Info Alert Box, Countdown is Over.</p>
+    <icon-info class="icon"></icon-info>
+    <icon-x class="close"></icon-x>
+  </template>
+
+  <button id="show-info-alert-box">Show Info Alert Box</button>
+  <button id="show-success-alert-box">Show Success Alert Box</button>
+  <button id="show-warning-alert-box">Show Warning Alert Box</button>
+  <button id="show-danger-alert-box">Show Danger Alert Box</button>
+  <button id="show-fail-alert-box">Show Fail Alert Box</button>
+
+  <section>
+    <!-- Example static alert boxes -->
+
+    <alert-box id="alert-box-info" type="info">
+      <p class="message">Info Alert Box.</p>
+      <icon-info class="icon"></icon-info>
+      <icon-x class="close"></icon-x>
+    </alert-box>
+
+    <alert-box id="alert-box-success" type="success">
+      <p class="message">Success Alert Box.</p>
+      <icon-success class="icon"></icon-success>
+      <icon-x class="close"></icon-x>
+    </alert-box>
+
+    <alert-box id="alert-box-warning" type="warning">
+      <p class="message">Warning Alert Box.</p>
+      <icon-warning class="icon"></icon-warning>
+      <icon-x class="close"></icon-x>
+    </alert-box>
+
+    <alert-box id="alert-box-danger" type="danger">
+      <p class="message">Danger Alert Box.</p>
+      <icon-danger class="icon"></icon-danger>
+      <icon-x class="close"></icon-x>
+    </alert-box>
+
+    <alert-box id="alert-box-fail" type="fail">
+      <p class="message">Fail Alert Box.</p>
+      <icon-fail class="icon"></icon-fail>
+      <span class="close">Oh, well.</span>
+    </alert-box>
+
+  </section>
+
+  <script src="./assets/script.js"></script>
+</body>
+</html>

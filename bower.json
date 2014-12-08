@@ -1,0 +1,24 @@
+{
+  "name": "alert-box",
+  "version": "0.0.1",
+  "authors": [
+    "pixelhandler@gmail.com"
+  ],
+  "description": "Alert Box Component",
+  "main": "index.html",
+  "keywords": [
+    "Web",
+    "Component",
+    "Alert",
+    "Box"
+  ],
+  "license": "ISC",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "bower_components"
+  ],
+  "devDependencies": {
+    "ember": "~1.8.1"
+  }
+}

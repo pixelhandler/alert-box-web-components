@@ -1,0 +1,25 @@
+{
+  "name": "alert-box",
+  "private": true,
+  "version": "0.0.1",
+  "description": "Alert Box Web Component",
+  "main": "index.html",
+  "directories": {
+    "example": "example"
+  },
+  "scripts": {
+    "server": "python -m SimpleHTTPServer",
+    "open": "open http://localhost:8000/example/"
+  },
+  "keywords": [
+    "Web",
+    "Component",
+    "Shadow",
+    "Dom",
+    "Template",
+    "Alert",
+    "Box"
+  ],
+  "author": "Bill Heaton",
+  "license": "ISC"
+}

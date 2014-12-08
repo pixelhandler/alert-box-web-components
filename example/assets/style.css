@@ -1,0 +1,40 @@
+/* Demo Styles */
+@import url(http://fonts.googleapis.com/css?family=Fira+Sans);
+
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body {
+  background: #ccc;
+  font-family: 'Fira Sans', sans-serif;
+}
+
+form {
+  float: left;
+  margin-right: 1em;
+}
+
+input[type="number"] {
+  width: 3rem;
+}
+
+/* fixed display in right bottom corner */
+alert-box.fixed {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  margin-right: 30px;
+  margin-bottom: 30px;
+}
+
+/* over-rides for wider action box in shadow dom */
+alert-box[type="fail"]::shadow .alert-box .box.action {
+  flex-grow: 2;
+}
+alert-box[type="fail"]::shadow .alert-box .right {
+  padding: 0;
+}
