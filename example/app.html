@@ -37,13 +37,17 @@
     {{outlet}}
   </script>
 
+  <!-- AlertBoxComponent, an Ember Component utilizing native alert-box component -->
+
   <script type="text/x-handlebars" data-template-name="alert-box-info">
-    <alert-box type="info">
+    {{#alert-box type="info"}}
       <p class="message">Info Alert Box.</p>
       <icon-info class="icon"></icon-info>
       <icon-x class="close"></icon-x>
-    </alert-box>
+    {{/alert-box}}
   </script>
+
+  <!-- Native alert-box Web Components -->
 
   <script type="text/x-handlebars" data-template-name="alert-box-success">
     <alert-box type="success">
@@ -77,24 +81,32 @@
     </alert-box>
   </script>
 
+  <!-- Templates for Ember Components that extend AlertBoxComponent -->
+
   <script type="text/x-handlebars" data-template-name="countdown-warning">
-    <alert-box class="fixed" type="warning" {{bind-attr data-minutes=minutes data-seconds=seconds}}>
-      <p class="message">
-        Warning Alert Box w/ Countdown:<br>
-        <span class="minutes">{{minutes}}</span> minutes 
-        <span class="seconds">{{seconds}}</span> seconds.
-      </p>
-      <icon-warning class="icon"></icon-warning>
-      <icon-x class="close"></icon-x>
-    </alert-box>
+    <p class="message">
+      Warning Alert Box w/ Countdown:<br>
+      <span class="minutes">{{minutes}}</span> minutes 
+      <span class="seconds">{{seconds}}</span> seconds.
+    </p>
+    <icon-warning class="icon"></icon-warning>
+    <icon-x class="close"></icon-x>
   </script>
 
   <script type="text/x-handlebars" data-template-name="countdown-info">
-    <alert-box class="fixed" type="info">
-      <p class="message">Info Alert Box, Countdown is Over.</p>
-      <icon-info class="icon"></icon-info>
-      <icon-x class="close"></icon-x>
-    </alert-box>
+    <p class="message">Info Alert Box, Countdown is Over.</p>
+    <icon-info class="icon"></icon-info>
+    <icon-x class="close"></icon-x>
+  </script>
+
+  <!-- Use of Ember Components that extend AlertBoxComponent -->
+
+  <script type="text/x-handlebars" data-template-name="countdown-warning-alert-box">
+    {{countdown-warning minutes=minutes seconds=seconds}}
+  </script>
+
+  <script type="text/x-handlebars" data-template-name="countdown-info-alert-box">
+    {{countdown-info}}
   </script>
 
   <script src="./assets/app.js"></script>

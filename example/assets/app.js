@@ -83,7 +83,7 @@
       if (evt.target.dataset.hasOwnProperty('minutes') && evt.target.dataset.hasOwnProperty('seconds')) {
         if (evt.target.dataset.minutes === "0" && evt.target.dataset.minutes === "0") {
           Ember.run.next(function() {
-            this.get('context.target').send('showAlertBox', {templateName: 'countdown-info'});
+            this.get('context.target').send('showAlertBox', {templateName: 'countdown-info-alert-box'});
           }.bind(this));
         } else {
           this.get('controller.model').stop();
@@ -117,7 +117,7 @@
         controller: controller
       });
 
-      this.render('countdown-warning', {
+      this.render('countdown-warning-alert-box', {
         into: 'application',
         outlet: 'alerts',
         controller: this.controllerFor('application')
@@ -130,6 +130,26 @@
         this.modelFor('index').pushObject(this.addModel(type));
       }
     }
+  });
+
+  App.AlertBoxComponent = Ember.Component.extend({
+    tagName: 'alert-box',
+    attributeBindings: ['type'],
+    type: 'info'
+  });
+
+  App.CountdownWarningComponent = App.AlertBoxComponent.extend({
+    classNames: ['fixed'],
+    attributeBindings: ['minutes:data-minutes', 'seconds:data-seconds'],
+    templateName: 'countdown-warning',
+    type: 'warning',
+    minutes: 0,
+    seconds: 0
+  });
+
+  App.CountdownInfoComponent = App.AlertBoxComponent.extend({
+    classNames: ['fixed'],
+    templateName: 'countdown-info'
   });
 
 }());
