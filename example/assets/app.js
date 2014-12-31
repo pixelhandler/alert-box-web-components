@@ -101,7 +101,7 @@
 
   App.IndexRoute = Ember.Route.extend({
     model: function() {
-      var alertBoxes = "info success warning danger fail".w();
+      var alertBoxes = "info".w(); // success warning danger fail
       var factory = this.addModel.bind(this);
       return alertBoxes.map(function (type) {
         return factory(type);

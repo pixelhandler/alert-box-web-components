@@ -1,0 +1,30 @@
+<!--
+  Web Component: Icon Info
+-->
+<template id="info-icon">
+  <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+    viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve">
+    <g>
+      <path fill="#FFFFFF" d="M51.833,39.464c0,0.919-0.68,1.68-1.76,1.68c-1.04,0-1.72-0.76-1.72-1.68c0-0.92,0.68-1.68,1.72-1.68
+        C51.153,37.785,51.833,38.544,51.833,39.464z M48.954,67.899V46.983h2.32v20.917H48.954z"/>
+    </g>
+    <circle fill="none" stroke="#FFFFFF" stroke-width="2" stroke-miterlimit="10" cx="49.95" cy="50.198" r="29.416"/>
+  </svg>
+</template>
+<script type="text/javascript" charset="utf-8">
+  document.addEventListener('DOMContentLoaded', function () {
+    'use-strict';
+
+    window.IconInfoElement = document.registerElement('icon-info', {
+      prototype: Object.create(HTMLElement.prototype, {
+        attachedCallback: {
+          value: function () {
+            var template = document.getElementById('info-icon');
+            var clone = document.importNode(template.content, true);
+            this.createShadowRoot().appendChild(clone);
+          }
+        },
+      })
+    });
+  });
+</script>

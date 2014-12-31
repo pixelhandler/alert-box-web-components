@@ -2,17 +2,15 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Alert Box</title>
+  <title>Alert Box | Web Components used with Example Ember.js App</title>
   <link rel="import" href="../index.html">
   <link rel="stylesheet" href="./assets/style.css">
-  <script src="../bower_components/jquery/dist/jquery.min.js"></script>
-  <script src="../bower_components/handlebars/handlebars.min.js"></script>
-  <script src="../bower_components/ember/ember.min.js"></script>
+  <script src="./assets/vendor.js"></script>
 </head>
 <body>
 
   <script type="text/x-handlebars">
-    <h2>Alert Box</h2>
+    <h2>Alert Box Web Components used with Ember.js</h2>
     <form {{action "reset" newCount on="submit"}}>
       <label>Countdown</label>
       {{input type="number" value=newCount}}

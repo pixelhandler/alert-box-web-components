@@ -1,0 +1,30 @@
+<!--
+  Web Component: Icon Fail
+-->
+<template id="icon-fail">
+  <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+    viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve">
+    <g>
+      <path fill="#FFFFFF" d="M59.58,64.036l-9.685-12.538l-9.524,12.538h-3.458l11.12-13.982L38.03,38.01h3.618l8.3,10.562L58.25,38.01
+        h3.457L51.811,49.94l11.387,14.096H59.58z"/>
+    </g>
+    <circle fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" cx="49.95" cy="50.198" r="29.416"/>
+  </svg>
+</template>
+<script type="text/javascript" charset="utf-8">
+  document.addEventListener('DOMContentLoaded', function () {
+    'use-strict';
+
+    window.IconFailElement = document.registerElement('icon-fail', {
+      prototype: Object.create(HTMLElement.prototype, {
+        attachedCallback: {
+          value: function () {
+            var template = document.getElementById('icon-fail');
+            var clone = document.importNode(template.content, true);
+            this.createShadowRoot().appendChild(clone);
+          }
+        },
+      })
+    });
+  });
+</script>

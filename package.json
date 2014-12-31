@@ -1,15 +1,18 @@
 {
   "name": "alert-box",
   "private": true,
-  "version": "0.0.1",
-  "description": "Alert Box Web Component",
-  "main": "index.html",
+  "version": "0.0.2",
+  "description": "Alert Box Web Components",
+  "main": "dist/index.html",
   "directories": {
-    "example": "example"
+    "example": "example",
+    "lib": "lib"
   },
   "scripts": {
-    "server": "python -m SimpleHTTPServer",
-    "open": "open http://localhost:8000/example/"
+    "server": "./node_modules/.bin/broccoli serve",
+    "build": "rm -fr ./dist && ./node_modules/.bin/broccoli build ./dist",
+    "prepublish": "npm run build",
+    "open": "open http://localhost:4200/example/"
   },
   "keywords": [
     "Web",
@@ -21,5 +24,12 @@
     "Box"
   ],
   "author": "Bill Heaton",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "broccoli": "^0.13.3",
+    "broccoli-cli": "0.0.1",
+    "broccoli-concat": "0.0.12",
+    "broccoli-merge-trees": "^0.2.1",
+    "broccoli-static-compiler": "^0.2.1"
+  }
 }

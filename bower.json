@@ -1,11 +1,11 @@
 {
   "name": "alert-box",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "authors": [
     "pixelhandler@gmail.com"
   ],
-  "description": "Alert Box Component",
-  "main": "index.html",
+  "description": "Alert Box Components",
+  "main": "dist/index.html",
   "keywords": [
     "Web",
     "Component",
@@ -16,9 +16,12 @@
   "private": true,
   "ignore": [
     "**/.*",
-    "bower_components"
+    "bower_components",
+    "node_modules",
+    "tmp",
+    "example"
   ],
   "devDependencies": {
-    "ember": "~1.8.1"
+    "ember": "~1.9.1"
   }
 }

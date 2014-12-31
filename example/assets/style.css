@@ -1,5 +1,5 @@
 /* Demo Styles */
-@import url(http://fonts.googleapis.com/css?family=Fira+Sans);
+@import url(//fonts.googleapis.com/css?family=Fira+Sans);
 
 html {
   box-sizing: border-box;
@@ -32,9 +32,10 @@ alert-box.fixed {
 }
 
 /* over-rides for wider action box in shadow dom */
-alert-box[type="fail"]::shadow .alert-box .box.action {
+alert-box[type="fail"]::shadow .action {
   flex-grow: 2;
 }
-alert-box[type="fail"]::shadow .alert-box .right {
+
+alert-box[type="fail"]::shadow .action div {
   padding: 0;
 }

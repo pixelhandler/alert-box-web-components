@@ -1,0 +1,29 @@
+<!--
+  Web Component: Icon X
+-->
+<template id="icon-x">
+  <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+    viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve">
+    <g>
+      <path fill="#FFFFFF" d="M61.059,64.036L49.884,49.837L39.005,64.036h-3.058l12.35-15.459L37.182,35.303h3.176l9.585,11.972
+        l9.467-11.972h3.059L51.59,48.451l12.643,15.585H61.059z"/>
+    </g>
+  </svg>
+</template>
+<script type="text/javascript" charset="utf-8">
+  document.addEventListener('DOMContentLoaded', function () {
+    'use-strict';
+
+    window.IconXElement = document.registerElement('icon-x', {
+      prototype: Object.create(HTMLElement.prototype, {
+        attachedCallback: {
+          value: function () {
+            var template = document.getElementById('icon-x');
+            var clone = document.importNode(template.content, true);
+            this.createShadowRoot().appendChild(clone);
+          }
+        },
+      })
+    });
+  });
+</script>

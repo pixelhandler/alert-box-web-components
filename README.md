@@ -1,6 +1,13 @@
 # Alert Box
 
-Web Component for an alert box.
+Web Component for an "Alert Box" element. (Only Chrome which supports: 
+HTML Imports, HTML Templates, Custom Elements, and Shadow DOM)
+
+
+## Import
+
+    <link rel="import" href="alert-box/dist/index.html">
+
 
 ## Example
 
@@ -8,8 +15,9 @@ The example directory shows a few alerts and one using Object.observe
 for data bindings.
 
 * `bower install`
-* `npm run server` launches simple python server
-* `npm run open` opens location <http://localhost:8000/example/>
+* `npm install`
+* `npm run server` launches broccoli (development) server
+* `npm run open` opens location <http://localhost:4200/example/>
 
 Click `X` icons to dismiss alert box, click buttons to render more.
 
@@ -17,16 +25,29 @@ The alert box on the lower right is an example of an alert box with
 a countdown. Hours and seconds tick down, then closes and a new alert
 follows.
 
+
 ### Using with Ember.js
 
-open <http://localhost:8000/example/app.html>
+Compare various examples of Web Components and/or Ember.Components.
 
-## Import
+Start the development server with `npm run server` and visit...
 
-    <link rel="import" href="alert-box/index.html">
+* Web Component only: <http://localhost:4200/example/index.html>
+* Ember.js app using (native) Web Component: <http://localhost:4200/example/app.html>
+* As an Ember.Component only: <http://localhost:4200/example/ember-component.html>
 
 
 ## Reference
+
+*W3.org Specs*
+
+* [Web Components Current Status](http://www.w3.org/standards/techs/components#w3c_all)
+* [HTML Templates](http://www.w3.org/TR/html-templates/)
+* [Custom Elements](http://www.w3.org/TR/custom-elements/)
+* [Shadow DOM](http://www.w3.org/TR/shadow-dom/)
+* [HTML Imports](http://www.w3.org/TR/html-imports/)
+
+*Tutorials / Links*
 
 * [WebComponents.org](http://webcomponents.org)
 * [Custom Elements - A Web Components Gallery for Modern Web Apps](http://customelements.io)
@@ -40,4 +61,4 @@ open <http://localhost:8000/example/app.html>
 * [getter - JavaScript | MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/get)
 * [Matt-Esch/virtual-dom](https://github.com/Matt-Esch/virtual-dom)
 * [YOU MIGHT NOT NEED JQUERY](http://youmightnotneedjquery.com/)
-
+* [Ember.Component](http://emberjs.com/api/classes/Ember.Component.html)

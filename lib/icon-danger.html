@@ -1,0 +1,31 @@
+<!--
+  Web Component: Icon Danger
+-->
+<template id="icon-danger">
+  <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+    viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve">
+    <g>
+      <path fill="#FFFFFF" d="M51.584,67.82c0,0.972-0.72,1.727-1.728,1.727c-0.972,0-1.728-0.755-1.728-1.727
+        c0-0.936,0.756-1.691,1.728-1.691C50.864,66.129,51.584,66.885,51.584,67.82z M48.885,61.305l-0.18-16.81h2.232l-0.144,16.81 H48.885z"/>
+    </g>
+    <polygon fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" points="
+      18.863,77.5 49.957,23.644 81.051,77.5 "/>
+  </svg>
+</template>
+<script type="text/javascript" charset="utf-8">
+  document.addEventListener('DOMContentLoaded', function () {
+    'use-strict';
+
+    window.IconDangerElement = document.registerElement('icon-danger', {
+      prototype: Object.create(HTMLElement.prototype, {
+        attachedCallback: {
+          value: function () {
+            var template = document.getElementById('icon-danger');
+            var clone = document.importNode(template.content, true);
+            this.createShadowRoot().appendChild(clone);
+          }
+        },
+      })
+    });
+  });
+</script>
