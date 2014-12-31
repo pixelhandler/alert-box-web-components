@@ -1,9 +1,14 @@
 {
-  "name": "alert-box",
-  "private": true,
+  "name": "alert-box-web-components",
   "version": "0.0.2",
+  "author": "Bill Heaton <pixelhandler@gmail.com>",
+  "license": "ISC",
   "description": "Alert Box Web Components",
   "main": "dist/index.html",
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/pixelhandler/alert-box-web-components.git"
+  },
   "directories": {
     "example": "example",
     "lib": "lib"
@@ -23,8 +28,6 @@
     "Alert",
     "Box"
   ],
-  "author": "Bill Heaton",
-  "license": "ISC",
   "devDependencies": {
     "broccoli": "^0.13.3",
     "broccoli-cli": "0.0.1",

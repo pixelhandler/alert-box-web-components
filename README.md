@@ -6,10 +6,28 @@ HTML Imports, HTML Templates, Custom Elements, and Shadow DOM)
 
 ## Import
 
-    <link rel="import" href="alert-box/dist/index.html">
+    <link rel="import" href="http://pixelhandler.github.io/alert-box/index.html">
+
+Well don't really use that URL, but that is a copy of the dist file, instead install...
 
 
-## Example
+## Install
+
+	bower install alert-box-web-components
+
+or
+
+	npm install alert-box-web-components
+
+
+## Demo
+
+* Web Component only: <http://pixelhandler.github.io/alert-box/example/>
+* Ember.js app using (native) Web Component: <http://pixelhandler.github.io/alert-box/example/app.html>
+* As an Ember.Component only: <http://pixelhandler.github.io/alert-box/example/ember-component.html>
+
+
+## Development
 
 The example directory shows a few alerts and one using Object.observe
 for data bindings.

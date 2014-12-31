@@ -1,11 +1,15 @@
 {
-  "name": "alert-box",
+  "name": "alert-box-web-components",
   "version": "0.0.2",
   "authors": [
-    "pixelhandler@gmail.com"
+    "Bill Heaton <pixelhandler@gmail.com>"
   ],
-  "description": "Alert Box Components",
+  "description": "Alert Box Web Components",
   "main": "dist/index.html",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:pixelhandler/alert-box-web-components.git"
+  },
   "keywords": [
     "Web",
     "Component",
@@ -13,13 +17,14 @@
     "Box"
   ],
   "license": "ISC",
-  "private": true,
   "ignore": [
     "**/.*",
     "bower_components",
     "node_modules",
     "tmp",
-    "example"
+    "example",
+    "dist/example/",
+    "Brocfile.js"
   ],
   "devDependencies": {
     "ember": "~1.9.1"
