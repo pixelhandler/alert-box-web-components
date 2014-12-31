@@ -29,5 +29,8 @@
   ],
   "devDependencies": {
     "ember": "~1.9.1"
+  },
+  "resolutions": {
+    "handlebars": ">= 2.0.0 < 3.0.0"
   }
 }

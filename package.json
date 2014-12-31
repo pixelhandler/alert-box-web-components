@@ -14,7 +14,7 @@
     "lib": "lib"
   },
   "scripts": {
-    "server": "./node_modules/.bin/broccoli serve",
+    "start": "./node_modules/.bin/broccoli serve",
     "build": "rm -fr ./dist && ./node_modules/.bin/broccoli build ./dist",
     "prepublish": "npm run build",
     "open": "open http://localhost:4200/example/"

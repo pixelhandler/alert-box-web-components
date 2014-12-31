@@ -6,7 +6,7 @@ HTML Imports, HTML Templates, Custom Elements, and Shadow DOM)
 
 ## Import
 
-    <link rel="import" href="http://pixelhandler.github.io/alert-box/index.html">
+    <link rel="import" href="http://pixelhandler.github.io/alert-box-web-components/index.html">
 
 Well don't really use that URL, but that is a copy of the dist file, instead install...
 
@@ -22,9 +22,9 @@ or
 
 ## Demo
 
-* Web Component only: <http://pixelhandler.github.io/alert-box/example/>
-* Ember.js app using (native) Web Component: <http://pixelhandler.github.io/alert-box/example/app.html>
-* As an Ember.Component only: <http://pixelhandler.github.io/alert-box/example/ember-component.html>
+* Web Component only: <http://pixelhandler.github.io/alert-box-web-components/example/>
+* Ember.js app using (native) Web Component: <http://pixelhandler.github.io/alert-box-web-components/example/app.html>
+* As an Ember.Component only: <http://pixelhandler.github.io/alert-box-web-components/example/ember-component.html>
 
 
 ## Development
