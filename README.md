@@ -1,6 +1,6 @@
 # Alert Box
 
-Web Component for an "Alert Box" element. (Only Chrome which supports: 
+Web Component for an "Alert Box" element. (Chrome only, which supports 
 HTML Imports, HTML Templates, Custom Elements, and Shadow DOM)
 
 
