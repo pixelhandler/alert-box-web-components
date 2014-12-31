@@ -2,7 +2,8 @@
 bower_components/
 node_modules/
 tmp/
-
 example/
 dist/example/
 Brocfile.js
+bower.json
+**/.*

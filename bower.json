@@ -1,6 +1,6 @@
 {
   "name": "alert-box-web-components",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "authors": [
     "Bill Heaton <pixelhandler@gmail.com>"
   ],
@@ -24,7 +24,8 @@
     "tmp",
     "example",
     "dist/example/",
-    "Brocfile.js"
+    "Brocfile.js",
+    "package.json"
   ],
   "devDependencies": {
     "ember": "~1.9.1"
