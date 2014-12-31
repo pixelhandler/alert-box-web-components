@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Alert Box | Ember.Component Example</title>
+  <link rel="stylesheet" href="./assets/style.css">
+  <link rel="stylesheet" href="./assets/alert-box-component.css">
+  <script src="./assets/vendor.js"></script>
+</head>
+<body>
+
+  <script type="text/x-handlebars" data-template-name="application">
+    {{outlet}}
+
+    {{countdown-alert-box
+      action="showAlertBox"
+      infoTemplateName="countdown-info"
+      warningTemplateName="countdown-warning"
+      ticker=model.ticker
+    }}
+
+    {{outlet alerts}}
+  </script>
+
+  <script type="text/x-handlebars" data-template-name="index">
+    {{#alert-box type="info"}}In 5 seconds a timer will launch an warning.{{/alert-box}}
+
+    {{outlet}}
+  </script>
+
+  <script type="text/x-handlebars" data-template-name="countdown-warning">
+    {{#alert-box type="warning" class="fixed" action="dismissAlert" param="countdown-warning"}}
+      Warning, countdown in progress&hellip;<br>
+      <span class="minutes">{{minutes}}</span> minutes 
+      <span class="seconds">{{seconds}}</span> seconds.
+    {{/alert-box}}
+  </script>
+
+  <script type="text/x-handlebars" data-template-name="countdown-info">
+    {{#alert-box type="info" class="fixed"}}
+      Countdown ended.
+    {{/alert-box}}
+  </script>
+
+  <script type="text/x-handlebars" data-template-name="components/alert-box">
+    <div class="notice box">
+      <div class="left">
+        {{partial iconTemplateName}}
+      </div>
+      <div class="middle">
+        <p class="message">
+          {{yield}}
+        </p>
+      </div>
+    </div>
+    <div class="action box">
+      <div class="right">
+        {{#if hasCloseContent}}
+          {{closeContent}}
+        {{else}}
+          {{partial closeTemplateName}}
+        {{/if}}
+      </div>
+    </div>
+  </script>
+
+  <script type="text/x-handlebars" data-template-name="icon-info">
+    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+      viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve">
+      <g>
+        <path fill="#FFFFFF" d="M51.833,39.464c0,0.919-0.68,1.68-1.76,1.68c-1.04,0-1.72-0.76-1.72-1.68c0-0.92,0.68-1.68,1.72-1.68
+          C51.153,37.785,51.833,38.544,51.833,39.464z M48.954,67.899V46.983h2.32v20.917H48.954z"/>
+      </g>
+      <circle fill="none" stroke="#FFFFFF" stroke-width="2" stroke-miterlimit="10" cx="49.95" cy="50.198" r="29.416"/>
+    </svg>
+  </script>
+
+  <script type="text/x-handlebars" data-template-name="icon-x">
+    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+      viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve">
+      <g>
+        <path fill="#FFFFFF" d="M61.059,64.036L49.884,49.837L39.005,64.036h-3.058l12.35-15.459L37.182,35.303h3.176l9.585,11.972
+          l9.467-11.972h3.059L51.59,48.451l12.643,15.585H61.059z"/>
+      </g>
+    </svg>
+  </script>
+
+  <script type="text/x-handlebars" data-template-name="icon-danger">
+    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+      viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve">
+      <g>
+        <path fill="#FFFFFF" d="M51.584,67.82c0,0.972-0.72,1.727-1.728,1.727c-0.972,0-1.728-0.755-1.728-1.727
+          c0-0.936,0.756-1.691,1.728-1.691C50.864,66.129,51.584,66.885,51.584,67.82z M48.885,61.305l-0.18-16.81h2.232l-0.144,16.81 H48.885z"/>
+      </g>
+      <polygon fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" points="
+        18.863,77.5 49.957,23.644 81.051,77.5 "/>
+    </svg>
+  </script>
+
+  <script type="text/x-handlebars" data-template-name="icon-warning">
+    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+      viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve">
+      <g>
+        <path fill="#FFFFFF" d="M51.584,61.82c0,0.972-0.72,1.727-1.728,1.727c-0.972,0-1.728-0.755-1.728-1.727
+          c0-0.936,0.756-1.691,1.728-1.691C50.864,60.129,51.584,60.885,51.584,61.82z M48.885,55.305l-0.18-16.81h2.232l-0.144,16.81 H48.885z"/>
+      </g>
+      <rect x="28.558" y="28.56" transform="matrix(0.7071 0.7071 -0.7071 0.7071 50.0008 -20.7098)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" width="42.881" height="42.881"/>
+    </svg>
+
+  </script>
+
+  <script type="text/x-handlebars" data-template-name="icon-success">
+    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+      viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve">
+      <g>
+        <path fill="#FFFFFF" d="M55.6,38.112l-8.51,29.788h-2.47l-6.573-17.288l1.976-0.646l5.775,15.616l8.207-29.37h7.752v1.9H55.6z"/>
+      </g>
+      <circle fill="none" stroke="#FFFFFF" stroke-width="2" stroke-miterlimit="10" cx="49.95" cy="50.198" r="29.416"/>
+    </svg>
+  </script>
+
+  <script type="text/x-handlebars" data-template-name="icon-fail">
+    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+      viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve">
+      <g>
+        <path fill="#FFFFFF" d="M59.58,64.036l-9.685-12.538l-9.524,12.538h-3.458l11.12-13.982L38.03,38.01h3.618l8.3,10.562L58.25,38.01
+          h3.457L51.811,49.94l11.387,14.096H59.58z"/>
+      </g>
+      <circle fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" cx="49.95" cy="50.198" r="29.416"/>
+    </svg>
+  </script>
+
+  <script src="./assets/ember-component.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,58 @@
+alert-box {
+  color: #ffffff;
+  background-color: transparent;
+  font-family: 'Fira Sans', sans-serif;
+  font-weight: 300;
+  overflow: visible;
+  height: 60px;
+  width: 400px;
+  margin: 15px 0;
+  display: flex;
+  flex-flow: row; }
+  alert-box * {
+    color: #ffffff; }
+  alert-box.has-close-content .box.action {
+    flex-grow: 2; }
+  alert-box.fixed {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    margin-right: 30px;
+    margin-bottom: 30px; }
+  alert-box > .box {
+    background-color: #337ab7;
+    border-radius: 4px;
+    margin-right: 2px;
+    padding: 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-flow: row; }
+    alert-box > .box.notice {
+      flex: 10.5 10%; }
+    alert-box > .box.action {
+      flex: 1 10%; }
+      alert-box > .box.action:hover {
+        cursor: pointer; }
+    alert-box > .box > .left {
+      flex: 1 10%;
+      padding: 6px 0 0 0; }
+    alert-box > .box > .middle {
+      flex: 9 10%; }
+    alert-box > .box > .right {
+      flex: 1 auto;
+      align-self: center;
+      text-align: center;
+      padding: 6px 0 0 0; }
+      alert-box > .box > .right .close {
+        text-align: center; }
+  alert-box.red .box, alert-box[type="danger"] .box, alert-box[type="fail"] .box {
+    background-color: #D9534F; }
+  alert-box.orange .box, alert-box[type="warning"] .box {
+    background-color: #F0AD4E; }
+  alert-box.green .box, alert-box[type="success"] .box {
+    background-color: #5CB85C; }
+  alert-box.blue .box, alert-box[type="info"] .box {
+    background-color: #337ab7; }
+
+/*# sourceMappingURL=alert-box.css.map */

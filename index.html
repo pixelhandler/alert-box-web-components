@@ -1,0 +1,332 @@
+<!-- BEGIN AlertBox Web Components
+
+See: https://github.com/pixelhandler/alert-box
+
+Copyright (c) 2014, Bill Heaton <pixelhandler@gmail.com>
+
+Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby granted, provided that the above copyright notice and this permission notice appear in all copies.
+
+THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+
+-->
+<!--
+  Web Component: Alert Box
+-->
+<template id="alert-box">
+  <style>
+    html {
+      box-sizing: border-box;
+    }
+    *, *:before, *:after {
+      box-sizing: inherit;
+    }
+
+    /* alert-box */
+    :host {
+      display: none;
+      width: 400px;
+      margin: 15px 0;
+    }
+    :host(.ready) {
+      display: block;
+    }
+
+    section {
+      background-color: #337ab7;
+    }
+    :host(.red) section,
+    :host([type="danger"]) section,
+    :host([type="fail"]) section {
+      background-color: #D9534F;
+    }
+    :host(.orange) section,
+    :host([type="warning"]) section {
+      background-color: #F0AD4E;
+    }
+    :host(.green) section,
+    :host([type="success"]) section {
+      background-color: #5CB85C;
+    }
+    :host(.blue) section,
+    :host([type="info"]) section {
+      background-color: #337ab7;
+    }
+
+    main {
+      color: #fff;
+      background-color: transparent;
+      font-family: 'Fira Sans', sans-serif;
+      overflow: visible;
+      display: flex;
+      flex-flow: row;
+      height: 60px;
+    }
+    section {
+      border-radius: 4px;
+      margin-right: 2px;
+      padding: 0;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      flex-flow: row;
+    }
+    section.notice {
+      flex: 10.5 10%;
+    }
+    section.action {
+      flex: 1 10%;
+    }
+    section.action:hover {
+      cursor: pointer;
+    }
+    aside {
+      flex: 1 10%;
+      padding: 6px 0 0 0;
+    }
+    article {
+      flex: 9 10%;
+    }
+    div {
+      flex: 1 auto;
+      align-self: center;
+      text-align: center;
+      padding: 6px 0 0 0;
+    }
+    div .close {
+      text-align: center;
+    }
+  </style>
+  <main class="alert-box">
+    <section class="notice">
+      <aside>
+        <content select=".icon"></content>
+      </aside>
+      <article>
+        <content select=".message"></content>
+      </article>
+    </section>
+    <section class="action">
+      <div>
+        <content select=".close"></content>
+      </div>
+    </section>
+  </main>
+</template>
+<script type="text/javascript" charset="utf-8">
+  document.addEventListener('DOMContentLoaded', function () {
+    'use-strict';
+
+    window.AlertBoxElement = document.registerElement('alert-box', {
+      prototype: Object.create(HTMLElement.prototype, {
+        createdCallback: {
+          value: function () {
+            this.addEventListener('click', this.clickHandler);
+          }
+        },
+        attachedCallback: {
+          value: function () {
+            if (this.innerHTML !== '') {
+              var template = document.getElementById('alert-box');
+              var clone = document.importNode(template.content, true);
+              this.createShadowRoot().appendChild(clone);
+            }
+            this.classList.add('ready');
+          }
+        },
+        detachedCallback: {
+          value: function () {
+            this.removeEventListener('click', this.clickHandler);
+          }
+        },
+        clickHandler: {
+          value: function (evt) {
+            evt = new CustomEvent('alert-box-click', evt);
+            this.dispatchEvent(evt);
+            this.parentNode.removeChild(this);
+          }
+        }
+      })
+    });
+  });
+</script>
+<!--
+  Web Component: Icon Info
+-->
+<template id="info-icon">
+  <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+    viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve">
+    <g>
+      <path fill="#FFFFFF" d="M51.833,39.464c0,0.919-0.68,1.68-1.76,1.68c-1.04,0-1.72-0.76-1.72-1.68c0-0.92,0.68-1.68,1.72-1.68
+        C51.153,37.785,51.833,38.544,51.833,39.464z M48.954,67.899V46.983h2.32v20.917H48.954z"/>
+    </g>
+    <circle fill="none" stroke="#FFFFFF" stroke-width="2" stroke-miterlimit="10" cx="49.95" cy="50.198" r="29.416"/>
+  </svg>
+</template>
+<script type="text/javascript" charset="utf-8">
+  document.addEventListener('DOMContentLoaded', function () {
+    'use-strict';
+
+    window.IconInfoElement = document.registerElement('icon-info', {
+      prototype: Object.create(HTMLElement.prototype, {
+        attachedCallback: {
+          value: function () {
+            var template = document.getElementById('info-icon');
+            var clone = document.importNode(template.content, true);
+            this.createShadowRoot().appendChild(clone);
+          }
+        },
+      })
+    });
+  });
+</script>
+<!--
+  Web Component: Icon X
+-->
+<template id="icon-x">
+  <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+    viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve">
+    <g>
+      <path fill="#FFFFFF" d="M61.059,64.036L49.884,49.837L39.005,64.036h-3.058l12.35-15.459L37.182,35.303h3.176l9.585,11.972
+        l9.467-11.972h3.059L51.59,48.451l12.643,15.585H61.059z"/>
+    </g>
+  </svg>
+</template>
+<script type="text/javascript" charset="utf-8">
+  document.addEventListener('DOMContentLoaded', function () {
+    'use-strict';
+
+    window.IconXElement = document.registerElement('icon-x', {
+      prototype: Object.create(HTMLElement.prototype, {
+        attachedCallback: {
+          value: function () {
+            var template = document.getElementById('icon-x');
+            var clone = document.importNode(template.content, true);
+            this.createShadowRoot().appendChild(clone);
+          }
+        },
+      })
+    });
+  });
+</script>
+
+<!--
+  Web Component: Icon Danger
+-->
+<template id="icon-danger">
+  <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+    viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve">
+    <g>
+      <path fill="#FFFFFF" d="M51.584,67.82c0,0.972-0.72,1.727-1.728,1.727c-0.972,0-1.728-0.755-1.728-1.727
+        c0-0.936,0.756-1.691,1.728-1.691C50.864,66.129,51.584,66.885,51.584,67.82z M48.885,61.305l-0.18-16.81h2.232l-0.144,16.81 H48.885z"/>
+    </g>
+    <polygon fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" points="
+      18.863,77.5 49.957,23.644 81.051,77.5 "/>
+  </svg>
+</template>
+<script type="text/javascript" charset="utf-8">
+  document.addEventListener('DOMContentLoaded', function () {
+    'use-strict';
+
+    window.IconDangerElement = document.registerElement('icon-danger', {
+      prototype: Object.create(HTMLElement.prototype, {
+        attachedCallback: {
+          value: function () {
+            var template = document.getElementById('icon-danger');
+            var clone = document.importNode(template.content, true);
+            this.createShadowRoot().appendChild(clone);
+          }
+        },
+      })
+    });
+  });
+</script>
+<!--
+  Web Component: Icon Warning
+-->
+<template id="icon-warning">
+  <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+    viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve">
+    <g>
+      <path fill="#FFFFFF" d="M51.584,61.82c0,0.972-0.72,1.727-1.728,1.727c-0.972,0-1.728-0.755-1.728-1.727
+        c0-0.936,0.756-1.691,1.728-1.691C50.864,60.129,51.584,60.885,51.584,61.82z M48.885,55.305l-0.18-16.81h2.232l-0.144,16.81 H48.885z"/>
+    </g>
+    <rect x="28.558" y="28.56" transform="matrix(0.7071 0.7071 -0.7071 0.7071 50.0008 -20.7098)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" width="42.881" height="42.881"/>
+  </svg>
+</template>
+<script type="text/javascript" charset="utf-8">
+  document.addEventListener('DOMContentLoaded', function () {
+    'use-strict';
+
+    window.IconWarningElement = document.registerElement('icon-warning', {
+      prototype: Object.create(HTMLElement.prototype, {
+        attachedCallback: {
+          value: function () {
+            var template = document.getElementById('icon-warning');
+            var clone = document.importNode(template.content, true);
+            this.createShadowRoot().appendChild(clone);
+          }
+        },
+      })
+    });
+  });
+</script>
+<!--
+  Web Component: Icon Success
+-->
+<template id="icon-success">
+  <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+    viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve">
+    <g>
+      <path fill="#FFFFFF" d="M55.6,38.112l-8.51,29.788h-2.47l-6.573-17.288l1.976-0.646l5.775,15.616l8.207-29.37h7.752v1.9H55.6z"/>
+    </g>
+    <circle fill="none" stroke="#FFFFFF" stroke-width="2" stroke-miterlimit="10" cx="49.95" cy="50.198" r="29.416"/>
+  </svg>
+</template>
+<script type="text/javascript" charset="utf-8">
+  document.addEventListener('DOMContentLoaded', function () {
+    'use-strict';
+
+    window.IconSuccessElement = document.registerElement('icon-success', {
+      prototype: Object.create(HTMLElement.prototype, {
+        attachedCallback: {
+          value: function () {
+            var template = document.getElementById('icon-success');
+            var clone = document.importNode(template.content, true);
+            this.createShadowRoot().appendChild(clone);
+          }
+        },
+      })
+    });
+  });
+</script>
+<!--
+  Web Component: Icon Fail
+-->
+<template id="icon-fail">
+  <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+    viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve">
+    <g>
+      <path fill="#FFFFFF" d="M59.58,64.036l-9.685-12.538l-9.524,12.538h-3.458l11.12-13.982L38.03,38.01h3.618l8.3,10.562L58.25,38.01
+        h3.457L51.811,49.94l11.387,14.096H59.58z"/>
+    </g>
+    <circle fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" cx="49.95" cy="50.198" r="29.416"/>
+  </svg>
+</template>
+<script type="text/javascript" charset="utf-8">
+  document.addEventListener('DOMContentLoaded', function () {
+    'use-strict';
+
+    window.IconFailElement = document.registerElement('icon-fail', {
+      prototype: Object.create(HTMLElement.prototype, {
+        attachedCallback: {
+          value: function () {
+            var template = document.getElementById('icon-fail');
+            var clone = document.importNode(template.content, true);
+            this.createShadowRoot().appendChild(clone);
+          }
+        },
+      })
+    });
+  });
+</script>
+<!-- END AlertBox Web Components -->
