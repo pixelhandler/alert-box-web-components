@@ -34,7 +34,7 @@ for data bindings.
 
 * `bower install`
 * `npm install`
-* `npm run server` launches broccoli (development) server
+* `npm run start` launches broccoli (development) server
 * `npm run open` opens location <http://localhost:4200/example/>
 
 Click `X` icons to dismiss alert box, click buttons to render more.
@@ -42,6 +42,13 @@ Click `X` icons to dismiss alert box, click buttons to render more.
 The alert box on the lower right is an example of an alert box with
 a countdown. Hours and seconds tick down, then closes and a new alert
 follows.
+
+### Build
+
+Brocfile.js (broccoli) is the build recipe, `npm run build` will create
+dist/index.html and dist/example/ only the index.html file is released with
+bower and npm packages. To watch and build use `npm run start` then open
+links under the heading below. Use ctrl-C to stop.
 
 
 ### Using with Ember.js
