@@ -32,5 +32,8 @@
   },
   "resolutions": {
     "handlebars": ">= 2.0.0 < 3.0.0"
+  },
+  "dependencies": {
+    "ember": "1.10.0-beta.4"
   }
 }

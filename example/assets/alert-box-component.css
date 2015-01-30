@@ -37,6 +37,9 @@ alert-box {
     alert-box > .box > .left {
       flex: 1 10%;
       padding: 6px 0 0 0; }
+      alert-box > .box > .left svg {
+        max-width: 59px;
+        max-height: 59px; }
     alert-box > .box > .middle {
       flex: 9 10%; }
     alert-box > .box > .right {
@@ -46,6 +49,9 @@ alert-box {
       padding: 6px 0 0 0; }
       alert-box > .box > .right .close {
         text-align: center; }
+      alert-box > .box > .right svg {
+        max-width: 67px;
+        max-height: 67px; }
   alert-box.red .box, alert-box[type="danger"] .box, alert-box[type="fail"] .box {
     background-color: #D9534F; }
   alert-box.orange .box, alert-box[type="warning"] .box {
