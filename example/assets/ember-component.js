@@ -1,6 +1,9 @@
 (function(){
 
-var App = Ember.Application.create();
+var App = Ember.Application.create({
+  rootElement: '#app',
+  LOG_RESOLVER: true
+});
 
 App.Router.map(function() {});
 
@@ -24,6 +27,9 @@ App.ApplicationRoute = Ember.Route.extend({
       if (name === 'countdown-warning') {
         this.get('countdown').stop();
       }
+    },
+    error: function(err) {
+      Ember.$('#errors').append('<pre>' + err.message + '<pre><br>');
     }
   },
 

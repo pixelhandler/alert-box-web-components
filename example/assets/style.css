@@ -39,3 +39,7 @@ alert-box[type="fail"]::shadow .action {
 alert-box[type="fail"]::shadow .action div {
   padding: 0;
 }
+
+#errors {
+  color: red;
+}
