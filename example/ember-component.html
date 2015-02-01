@@ -9,6 +9,9 @@
 </head>
 <body>
 
+  <section id="app"></section>
+  <section id="errors"></section>
+
   <script type="text/x-handlebars" data-template-name="application">
     {{outlet}}
 
@@ -19,7 +22,7 @@
       ticker=model.ticker
     }}
 
-    {{outlet alerts}}
+    {{outlet "alerts"}}
   </script>
 
   <script type="text/x-handlebars" data-template-name="index">

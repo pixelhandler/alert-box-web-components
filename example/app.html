@@ -3,11 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <title>Alert Box | Web Components used with Example Ember.js App</title>
-  <link rel="import" href="../index.html">
+  <link rel="import" href="../index.html"><!-- Alert Box Web Components -->
   <link rel="stylesheet" href="./assets/style.css">
   <script src="./assets/vendor.js"></script>
 </head>
 <body>
+
+  <section id="app"></section>
+  <section id="errors"></section>
 
   <script type="text/x-handlebars">
     <h2>Alert Box Web Components used with Ember.js</h2>
@@ -18,7 +21,7 @@
 
     {{outlet}}
 
-    {{outlet alerts}}
+    {{outlet "alerts"}}
   </script>
 
   <script type="text/x-handlebars" data-template-name="index">
@@ -35,8 +38,10 @@
     {{outlet}}
   </script>
 
-  <!-- AlertBoxComponent, an Ember Component utilizing native alert-box component -->
-
+  <!--
+    AlertBoxComponent, an Ember Component utilizing native alert-box component
+    Basically an upgraded Web Component to an Ember.Component
+  -->
   <script type="text/x-handlebars" data-template-name="alert-box-info">
     {{#alert-box type="info"}}
       <p class="message">Info Alert Box.</p>
@@ -81,7 +86,7 @@
 
   <!-- Templates for Ember Components that extend AlertBoxComponent -->
 
-  <script type="text/x-handlebars" data-template-name="countdown-warning">
+  <script type="text/x-handlebars" data-template-name="components/countdown-warning">
     <p class="message">
       Warning Alert Box w/ Countdown:<br>
       <span class="minutes">{{minutes}}</span> minutes 
@@ -91,7 +96,7 @@
     <icon-x class="close"></icon-x>
   </script>
 
-  <script type="text/x-handlebars" data-template-name="countdown-info">
+  <script type="text/x-handlebars" data-template-name="components/countdown-info">
     <p class="message">Info Alert Box, Countdown is Over.</p>
     <icon-info class="icon"></icon-info>
     <icon-x class="close"></icon-x>
