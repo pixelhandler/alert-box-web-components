@@ -25,7 +25,7 @@ var components = concat('lib', {
     'See: https://github.com/pixelhandler/alert-box',
     fs.readFileSync(path.resolve(__dirname, 'LICENSE.txt'), 'utf8'),
     '-->'
-	].join('\n\n'),
+  ].join('\n\n'),
 
   footer: '<!-- END AlertBox Web Components -->'
 });
@@ -38,8 +38,8 @@ var example = pickFiles('example', {
 var exampleDependencies = concat('bower_components', {
   inputFiles: [
     'jquery/dist/jquery.min.js',
-    'handlebars/handlebars.min.js',
-    'ember/ember.min.js'
+    'ember/ember.debug.js',
+    'ember/ember-template-compiler.js'
   ],
   outputFile: '/example/assets/vendor.js',
   wrapInFunction: false,

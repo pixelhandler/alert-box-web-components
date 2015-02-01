@@ -27,10 +27,12 @@
     "Brocfile.js",
     "package.json"
   ],
+  "dependencies": {},
   "devDependencies": {
-    "ember": "~1.9.1"
+    "ember": "1.10.0-beta.4",
+    "jquery": "2.1.3"
   },
   "resolutions": {
-    "handlebars": ">= 2.0.0 < 3.0.0"
+    "ember": "canary"
   }
 }

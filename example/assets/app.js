@@ -1,15 +1,30 @@
 (function () {
   'use strict';
 
-  // HTML Import, Web Component Template
-  var link = document.querySelector('link[rel="import"]');
-  var templates = link.import.querySelectorAll('template');
-  for (var i = 0; i < templates.length; i++) {
-    document.querySelector('body').appendChild(templates[i]);
-  }
+  window.EmberENV = {
+    // https://github.com/emberjs/ember.js/blob/master/FEATURES.md
+    FEATURES: {
+      'ember-htmlbars-component-generation': true
+    }
+  };
+
+  Ember.Application.initializer({
+    name: 'init-web-components',
+
+    initialize: function() {
+      // HTML Import, Web Component Template
+      var link = document.querySelector('link[rel="import"]');
+      var templates = link.import.querySelectorAll('template');
+      for (var i = 0; i < templates.length; i++) {
+        document.querySelector('body').appendChild(templates[i]);
+      }
+    }
+  });
 
   var App = Ember.Application.create({
-    customEvents: { 'alert-box-click': 'alertBoxClick' }
+    rootElement: '#app',
+    customEvents: { 'alert-box-click': 'alertBoxClick' },
+    LOG_RESOLVER: true
   });
 
   // Countdown model
@@ -70,6 +85,9 @@
       },
       reset: function (newCount) {
         this.modelFor('application').set('totalSeconds', newCount);
+      },
+      error: function(err) {
+        Ember.$('#errors').append('<pre>' + err.message + '<pre><br>');
       }
     }
   });
@@ -101,7 +119,7 @@
 
   App.IndexRoute = Ember.Route.extend({
     model: function() {
-      var alertBoxes = "info".w(); // success warning danger fail
+      var alertBoxes = "info success warning danger fail".w();
       var factory = this.addModel.bind(this);
       return alertBoxes.map(function (type) {
         return factory(type);
@@ -128,10 +146,19 @@
       showAlertBox: function(type) {
         if (typeof type !== 'string') { return true; }
         this.modelFor('index').pushObject(this.addModel(type));
+      },
+      error: function(err) {
+        Ember.$('#errors').append('<pre>' + err.message + '<pre><br>');
       }
     }
   });
 
+  // AlertBoxComponents and components that extend it upgrade
+  // a native Web Component `<alert-box>`
+
+  // NOTE: without alert-box being defined in ember...
+  // The feature for `ember-htmlbars-component-generation: true`
+  // would bug out on `<alert-box>` used in a template
   App.AlertBoxComponent = Ember.Component.extend({
     tagName: 'alert-box',
     attributeBindings: ['type'],
@@ -141,7 +168,7 @@
   App.CountdownWarningComponent = App.AlertBoxComponent.extend({
     classNames: ['fixed'],
     attributeBindings: ['minutes:data-minutes', 'seconds:data-seconds'],
-    templateName: 'countdown-warning',
+    layoutName: 'countdown-warning',
     type: 'warning',
     minutes: 0,
     seconds: 0
@@ -149,7 +176,7 @@
 
   App.CountdownInfoComponent = App.AlertBoxComponent.extend({
     classNames: ['fixed'],
-    templateName: 'countdown-info'
+    layoutName: 'countdown-info'
   });
 
 }());
