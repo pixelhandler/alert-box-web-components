@@ -1,7 +1,7 @@
 <!--
   Web Component: Icon Info
 -->
-<template id="info-icon">
+<template id="icon-info">
   <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
     viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve">
     <g>
@@ -11,20 +11,17 @@
     <circle fill="none" stroke="#FFFFFF" stroke-width="2" stroke-miterlimit="10" cx="49.95" cy="50.198" r="29.416"/>
   </svg>
 </template>
-<script type="text/javascript" charset="utf-8">
-  document.addEventListener('DOMContentLoaded', function () {
-    'use-strict';
 
-    window.IconInfoElement = document.registerElement('icon-info', {
-      prototype: Object.create(HTMLElement.prototype, {
-        attachedCallback: {
-          value: function () {
-            var template = document.getElementById('info-icon');
-            var clone = document.importNode(template.content, true);
-            this.createShadowRoot().appendChild(clone);
-          }
-        },
-      })
-    });
-  });
+<script type="text/javascript" charset="utf-8">
+class IconInfoElement extends HTMLElement {
+  connectedCallback() {
+    let template = document.getElementById('icon-info');
+    let clone = document.importNode(template.content, true);
+    this.attachShadow({mode: 'open'}).appendChild(clone);
+  }
+}
+document.addEventListener('DOMContentLoaded', function () {
+  'use-strict';
+  window.customElements.define('icon-info', IconInfoElement);
+});
 </script>

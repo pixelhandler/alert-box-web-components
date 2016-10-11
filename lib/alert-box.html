@@ -85,56 +85,52 @@
       text-align: center;
     }
   </style>
+
   <main class="alert-box">
     <section class="notice">
       <aside>
-        <content select=".icon"></content>
+        <slot name="icon"></slot>
       </aside>
       <article>
-        <content select=".message"></content>
+        <slot name="message"></slot>
       </article>
     </section>
     <section class="action">
       <div>
-        <content select=".close"></content>
+        <slot name="close"></slot>
       </div>
     </section>
   </main>
 </template>
-<script type="text/javascript" charset="utf-8">
-  document.addEventListener('DOMContentLoaded', function () {
-    'use-strict';
 
-    window.AlertBoxElement = document.registerElement('alert-box', {
-      prototype: Object.create(HTMLElement.prototype, {
-        createdCallback: {
-          value: function () {
-            this.addEventListener('click', this.clickHandler);
-          }
-        },
-        attachedCallback: {
-          value: function () {
-            if (this.innerHTML !== '') {
-              var template = document.getElementById('alert-box');
-              var clone = document.importNode(template.content, true);
-              this.createShadowRoot().appendChild(clone);
-            }
-            this.classList.add('ready');
-          }
-        },
-        detachedCallback: {
-          value: function () {
-            this.removeEventListener('click', this.clickHandler);
-          }
-        },
-        clickHandler: {
-          value: function (evt) {
-            evt = new CustomEvent('alert-box-click', evt);
-            this.dispatchEvent(evt);
-            this.parentNode.removeChild(this);
-          }
-        }
-      })
-    });
-  });
+<script type="text/javascript" charset="utf-8">
+class AlertBoxElement extends HTMLElement {
+  constructor() {
+    super();
+    this.addEventListener('click', this.clickHandler);
+    let template = document.getElementById('alert-box');
+    let clone = document.importNode(template.content, true);
+    this.attachShadow({mode: 'open'}).appendChild(clone);
+  }
+
+  clickHandler() {
+    let evt = new Event('alert-box-click', {bubbles: true, composed: true});
+    this.dispatchEvent(evt);
+    this.parentNode.removeChild(this);
+  }
+
+  disconnectedCallback() {
+    this.removeEventListener('click', this.clickHandler);
+  }
+
+  connectedCallback() {
+    //if (this.innerHTML !== '') {}
+    this.classList.add('ready');
+  }
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+  'use-strict';
+  window.customElements.define('alert-box', AlertBoxElement);
+});
 </script>

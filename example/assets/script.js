@@ -2,35 +2,35 @@
   'use strict';
 
   // HTML Import, Web Component Template
-  var link = document.querySelector('link[rel="import"]');
-  var templates = link.import.querySelectorAll('template');
-  for (var i = 0; i < templates.length; i++) {
+  let link = document.querySelector('link[rel="import"]');
+  let templates = link.import.querySelectorAll('template');
+  for (let i = 0; i < templates.length; i++) {
     document.querySelector('body').appendChild(templates[i]);
   }
 
-  var alertBoxFactory = function (template, type, className) {
-    var alertBox = document.createElement('Alert-Box');
+  let alertBoxFactory = function (template, type, className) {
+    let alertBox = document.createElement('alert-box');
     alertBox.setAttribute('type', type || 'info');
     if (className) {
       alertBox.classList.add(className);
     }
-    var clone = document.importNode(template.content, true);
+    let clone = document.importNode(template.content, true);
     alertBox.appendChild(clone);
 
     return alertBox;
   };
 
   // Create Alert Boxes
-  var alertBoxes = {};
-  var alertBoxTypes = ['info','success','warning','danger','fail'];
+  let alertBoxes = {};
+  let alertBoxTypes = ['info','success','warning','danger','fail'];
   alertBoxTypes.forEach(function (type) {
     alertBoxes[type] = document.getElementById('alert-box-' + type).innerHTML;
   });
-  var showAlertBox = function (type) {
+  let showAlertBox = function (type) {
     return function () {
-      var template = document.createElement('template');
+      let template = document.createElement('template');
       template.innerHTML = alertBoxes[type];
-      var alertBox = alertBoxFactory(template, type);
+      let alertBox = alertBoxFactory(template, type);
       document.querySelector('section').appendChild(alertBox);
     };
   };
@@ -47,33 +47,28 @@
   });
 
   // Map of Countdown instances:seconds
-  var _priv = new WeakMap();
+  let _priv = new WeakMap();
 
   // Countdown model
-  var Countdown = function (seconds) {
+  let Countdown = function (seconds) {
     _priv.set(this, seconds);
-    var notifier = Object.getNotifier(this);
 
     Object.defineProperty(this, 'seconds', {
       get: function () {
-        var _seconds = _priv.get(this);
+        let _seconds = _priv.get(this);
         return (_seconds >= 60) ? _seconds % 60 : _seconds;
       },
       set: function (s) {
-        var _seconds = _priv.get(this);
+        let _seconds = _priv.get(this);
         if (_seconds === s) { return; }
-        notifier.notify({
-          type: 'update',
-          name: 'seconds',
-          oldValue: _seconds
-        });
         _priv.set(this, s);
+        this.display();
       }
     });
 
     Object.defineProperty(this, 'minutes', {
       get: function () {
-        var _seconds = _priv.get(this);
+        let _seconds = _priv.get(this);
         return Math.floor(_seconds / 60);
       }
     });
@@ -82,9 +77,9 @@
   };
 
   Countdown.prototype.start = function () {
-    Object.observe(this, this._observer);
+    this.display();
     this._ticker = setInterval(function () {
-      var s = _priv.get(this);
+      let s = _priv.get(this);
       if (s > 0) {
         this.seconds = s - 1;
       } else {
@@ -94,32 +89,30 @@
   };
 
   Countdown.prototype.stop = function () {
-    Object.unobserve(this, this._observer);
     clearInterval(this._ticker);
   };
 
-  Countdown.prototype._observer = function(changes) {
-    var minuteEl = document.querySelector('#countdown-warning .minutes');
-    var secondsEl = document.querySelector('#countdown-warning .seconds');
+  Countdown.prototype.display = function() {
+    let minuteEl = document.querySelector('#countdown-warning .minutes');
+    let secondsEl = document.querySelector('#countdown-warning .seconds');
     if (!minuteEl || !secondsEl) { return; }
-    var countdown = changes[0].object;
-    minuteEl.innerText = countdown.minutes;
-    secondsEl.innerText = countdown.seconds;
+    minuteEl.innerText = this.minutes;
+    secondsEl.innerText = this.seconds;
 
-    if (countdown.seconds === 0 && countdown.minutes === 0) {
-      var evt = document.createEvent('HTMLEvents');
+    if (this.seconds === 0 && this.minutes === 0) {
+      let evt = document.createEvent('HTMLEvents');
       evt.initEvent('click', true, false);
       document.getElementById('countdown-warning').dispatchEvent(evt);
       showCountdownInfo();
     }
   };
 
-  var showCountdownInfo = function () {
-    var template = document.getElementById('countdown-info');
-    var alertBox = alertBoxFactory(template, 'info', 'fixed');
+  function showCountdownInfo() {
+    let template = document.getElementById('countdown-info');
+    let alertBox = alertBoxFactory(template, 'info', 'fixed');
     document.querySelector('body').appendChild(alertBox);
-  };
+  }
 
-  var timer = new Countdown(1 * 60 + 10);
+  let timer = new Countdown(20 /* seconds */);
 
 }());

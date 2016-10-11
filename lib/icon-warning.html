@@ -11,20 +11,17 @@
     <rect x="28.558" y="28.56" transform="matrix(0.7071 0.7071 -0.7071 0.7071 50.0008 -20.7098)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" width="42.881" height="42.881"/>
   </svg>
 </template>
-<script type="text/javascript" charset="utf-8">
-  document.addEventListener('DOMContentLoaded', function () {
-    'use-strict';
 
-    window.IconWarningElement = document.registerElement('icon-warning', {
-      prototype: Object.create(HTMLElement.prototype, {
-        attachedCallback: {
-          value: function () {
-            var template = document.getElementById('icon-warning');
-            var clone = document.importNode(template.content, true);
-            this.createShadowRoot().appendChild(clone);
-          }
-        },
-      })
-    });
-  });
+<script type="text/javascript" charset="utf-8">
+class IconWarningElement extends HTMLElement {
+  connectedCallback() {
+    let template = document.getElementById('icon-warning');
+    let clone = document.importNode(template.content, true);
+    this.attachShadow({mode: 'open'}).appendChild(clone);
+  }
+}
+document.addEventListener('DOMContentLoaded', function () {
+  'use-strict';
+  window.customElements.define('icon-warning', IconWarningElement);
+});
 </script>
