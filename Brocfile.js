@@ -1,10 +1,10 @@
-var fs = require('fs');
-var path = require('path');
-var concat = require('broccoli-concat');
-var Funnel = require('broccoli-funnel');
-var mergeTrees = require('broccoli-merge-trees');
+let fs = require('fs');
+let path = require('path');
+let concat = require('broccoli-concat');
+let Funnel = require('broccoli-funnel');
+let mergeTrees = require('broccoli-merge-trees');
 
-var components = concat('lib', {
+let components = concat('lib', {
 
   inputFiles: [
     'alert-box.html',
@@ -30,9 +30,17 @@ var components = concat('lib', {
   footer: '<!-- END AlertBox Web Components -->'
 });
 
-var example = new Funnel('example', {
+let example = new Funnel('example', {
   srcDir: '/',
   destDir: 'example'
 });
 
-module.exports = mergeTrees([components, example]);
+let exampleDependencies = concat('node_modules', {
+  inputFiles: [
+    'webcomponents.js/webcomponents.js'
+  ],
+  outputFile: '/example/assets/vendor.js',
+  wrapInFunction: false,
+});
+
+module.exports = mergeTrees([components, example, exampleDependencies]);

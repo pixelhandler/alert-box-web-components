@@ -6,8 +6,8 @@
   "description": "Alert Box Web Components",
   "main": "dist/index.html",
   "repository": {
-    "type" : "git",
-    "url" : "https://github.com/pixelhandler/alert-box-web-components.git"
+    "type": "git",
+    "url": "https://github.com/pixelhandler/alert-box-web-components.git"
   },
   "directories": {
     "example": "example",
@@ -26,7 +26,8 @@
     "broccoli": "^1.0.0-beta.7",
     "broccoli-cli": "^1.0.0",
     "broccoli-concat": "2.3.8",
+    "broccoli-funnel": "^1.0.7",
     "broccoli-merge-trees": "^1.1.4",
-    "broccoli-funnel": "^1.0.7"
+    "webcomponents.js": "^0.7.22"
   }
 }

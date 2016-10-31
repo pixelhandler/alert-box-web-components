@@ -1,5 +1,13 @@
-(function () {
+(function() {
   'use strict';
+
+  function ready(fn) {
+    if (document.readyState !== 'loading'){
+      fn();
+    } else {
+      document.addEventListener('DOMContentLoaded', fn);
+    }
+  }
 
   // HTML Import, Web Component Template
   let link = document.querySelector('link[rel="import"]');
@@ -20,6 +28,8 @@
     return alertBox;
   };
 
+
+ready(function() {
   // Create Alert Boxes
   let alertBoxes = {};
   let alertBoxTypes = ['info','success','warning','danger','fail'];
@@ -45,6 +55,7 @@
     }
     console.log(evt);
   });
+});
 
   // Map of Countdown instances:seconds
   let _priv = new WeakMap();
@@ -113,6 +124,8 @@
     document.querySelector('body').appendChild(alertBox);
   }
 
+ready(function(){
   let timer = new Countdown(20 /* seconds */);
+});
 
 }());
