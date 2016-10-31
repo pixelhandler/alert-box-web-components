@@ -11,20 +11,17 @@
     <circle fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" cx="49.95" cy="50.198" r="29.416"/>
   </svg>
 </template>
-<script type="text/javascript" charset="utf-8">
-  document.addEventListener('DOMContentLoaded', function () {
-    'use-strict';
 
-    window.IconFailElement = document.registerElement('icon-fail', {
-      prototype: Object.create(HTMLElement.prototype, {
-        attachedCallback: {
-          value: function () {
-            var template = document.getElementById('icon-fail');
-            var clone = document.importNode(template.content, true);
-            this.createShadowRoot().appendChild(clone);
-          }
-        },
-      })
-    });
-  });
+<script type="text/javascript" charset="utf-8">
+class IconFailElement extends HTMLElement {
+  connectedCallback() {
+    let template = document.getElementById('icon-fail');
+    let clone = document.importNode(template.content, true);
+    this.attachShadow({mode: 'open'}).appendChild(clone);
+  }
+}
+document.addEventListener('DOMContentLoaded', function () {
+  'use-strict';
+  window.customElements.define('icon-fail', IconFailElement);
+});
 </script>

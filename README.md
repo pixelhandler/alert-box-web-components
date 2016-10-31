@@ -1,7 +1,7 @@
 # Alert Box
 
-Web Component for an "Alert Box" element. (Chrome only, which supports 
-HTML Imports, HTML Templates, Custom Elements, and Shadow DOM)
+Web Component for an "Alert Box" element. (Requires: HTML Imports,
+HTML Templates, Custom Elements, and Shadow DOM)
 
 
 ## Import
@@ -13,18 +13,12 @@ Well don't really use that URL, but that is a copy of the dist file, instead ins
 
 ## Install
 
-	bower install alert-box-web-components
-
-or
-
-	npm install alert-box-web-components
+    npm install alert-box-web-components
 
 
 ## Demo
 
-* Web Component only: <http://pixelhandler.github.io/alert-box-web-components/example/>
-* Ember.js app using (native) Web Component: <http://pixelhandler.github.io/alert-box-web-components/example/app.html>
-* As an Ember.Component only: <http://pixelhandler.github.io/alert-box-web-components/example/ember-component.html>
+* <http://pixelhandler.github.io/alert-box-web-components/example/>
 
 
 ## Development
@@ -43,23 +37,13 @@ The alert box on the lower right is an example of an alert box with
 a countdown. Hours and seconds tick down, then closes and a new alert
 follows.
 
+
 ### Build
 
 Brocfile.js (broccoli) is the build recipe, `npm run build` will create
 dist/index.html and dist/example/ only the index.html file is released with
 bower and npm packages. To watch and build use `npm run start` then open
 links under the heading below. Use ctrl-C to stop.
-
-
-### Using with Ember.js
-
-Compare various examples of Web Components and/or Ember.Components.
-
-Start the development server with `npm run server` and visit...
-
-* Web Component only: <http://localhost:4200/example/index.html>
-* Ember.js app using (native) Web Component: <http://localhost:4200/example/app.html>
-* As an Ember.Component only: <http://localhost:4200/example/ember-component.html>
 
 
 ## Reference
@@ -81,9 +65,5 @@ Start the development server with `npm run server` and visit...
 * [Shadow DOM 101 - HTML5 Rocks](http://www.html5rocks.com/en/tutorials/webcomponents/shadowdom/)
 * [Shadow DOM 201: CSS and Styling - HTML5 Rocks](http://www.html5rocks.com/en/tutorials/webcomponents/shadowdom-201/)
 * [Shadow DOM 301: Advanced Concepts & DOM APIs - HTML5 Rocks](http://www.html5rocks.com/en/tutorials/webcomponents/shadowdom-301/)
-* [A Guide to Web Components](http://css-tricks.com/modular-future-web-components/)
-* [Data-binding Revolutions with Object.observe() - HTML5 Rocks](http://www.html5rocks.com/en/tutorials/es7/observe/)
 * [getter - JavaScript | MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/get)
-* [Matt-Esch/virtual-dom](https://github.com/Matt-Esch/virtual-dom)
 * [YOU MIGHT NOT NEED JQUERY](http://youmightnotneedjquery.com/)
-* [Ember.Component](http://emberjs.com/api/classes/Ember.Component.html)

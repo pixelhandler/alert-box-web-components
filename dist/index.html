@@ -2,11 +2,12 @@
 
 See: https://github.com/pixelhandler/alert-box
 
-Copyright (c) 2014, Bill Heaton <pixelhandler@gmail.com>
+Copyright (c) 2014-2016, Bill Heaton <pixelhandler@gmail.com>
 
 Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby granted, provided that the above copyright notice and this permission notice appear in all copies.
 
 THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+
 
 -->
 <!--
@@ -96,63 +97,60 @@ THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH RE
       text-align: center;
     }
   </style>
+
   <main class="alert-box">
     <section class="notice">
       <aside>
-        <content select=".icon"></content>
+        <slot name="icon"></slot>
       </aside>
       <article>
-        <content select=".message"></content>
+        <slot name="message"></slot>
       </article>
     </section>
     <section class="action">
       <div>
-        <content select=".close"></content>
+        <slot name="close"></slot>
       </div>
     </section>
   </main>
 </template>
-<script type="text/javascript" charset="utf-8">
-  document.addEventListener('DOMContentLoaded', function () {
-    'use-strict';
 
-    window.AlertBoxElement = document.registerElement('alert-box', {
-      prototype: Object.create(HTMLElement.prototype, {
-        createdCallback: {
-          value: function () {
-            this.addEventListener('click', this.clickHandler);
-          }
-        },
-        attachedCallback: {
-          value: function () {
-            if (this.innerHTML !== '') {
-              var template = document.getElementById('alert-box');
-              var clone = document.importNode(template.content, true);
-              this.createShadowRoot().appendChild(clone);
-            }
-            this.classList.add('ready');
-          }
-        },
-        detachedCallback: {
-          value: function () {
-            this.removeEventListener('click', this.clickHandler);
-          }
-        },
-        clickHandler: {
-          value: function (evt) {
-            evt = new CustomEvent('alert-box-click', evt);
-            this.dispatchEvent(evt);
-            this.parentNode.removeChild(this);
-          }
-        }
-      })
-    });
-  });
+<script type="text/javascript" charset="utf-8">
+class AlertBoxElement extends HTMLElement {
+  constructor() {
+    super();
+    this.addEventListener('click', this.clickHandler);
+    let template = document.getElementById('alert-box');
+    let clone = document.importNode(template.content, true);
+    this.attachShadow({mode: 'open'}).appendChild(clone);
+  }
+
+  clickHandler() {
+    let evt = new Event('alert-box-click', {bubbles: true, composed: true});
+    this.dispatchEvent(evt);
+    this.parentNode.removeChild(this);
+  }
+
+  disconnectedCallback() {
+    this.removeEventListener('click', this.clickHandler);
+  }
+
+  connectedCallback() {
+    //if (this.innerHTML !== '') {}
+    this.classList.add('ready');
+  }
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+  'use-strict';
+  window.customElements.define('alert-box', AlertBoxElement);
+});
 </script>
+
 <!--
   Web Component: Icon Info
 -->
-<template id="info-icon">
+<template id="icon-info">
   <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
     viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve">
     <g>
@@ -162,23 +160,21 @@ THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH RE
     <circle fill="none" stroke="#FFFFFF" stroke-width="2" stroke-miterlimit="10" cx="49.95" cy="50.198" r="29.416"/>
   </svg>
 </template>
-<script type="text/javascript" charset="utf-8">
-  document.addEventListener('DOMContentLoaded', function () {
-    'use-strict';
 
-    window.IconInfoElement = document.registerElement('icon-info', {
-      prototype: Object.create(HTMLElement.prototype, {
-        attachedCallback: {
-          value: function () {
-            var template = document.getElementById('info-icon');
-            var clone = document.importNode(template.content, true);
-            this.createShadowRoot().appendChild(clone);
-          }
-        },
-      })
-    });
-  });
+<script type="text/javascript" charset="utf-8">
+class IconInfoElement extends HTMLElement {
+  connectedCallback() {
+    let template = document.getElementById('icon-info');
+    let clone = document.importNode(template.content, true);
+    this.attachShadow({mode: 'open'}).appendChild(clone);
+  }
+}
+document.addEventListener('DOMContentLoaded', function () {
+  'use-strict';
+  window.customElements.define('icon-info', IconInfoElement);
+});
 </script>
+
 <!--
   Web Component: Icon X
 -->
@@ -192,21 +188,17 @@ THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH RE
   </svg>
 </template>
 <script type="text/javascript" charset="utf-8">
-  document.addEventListener('DOMContentLoaded', function () {
-    'use-strict';
-
-    window.IconXElement = document.registerElement('icon-x', {
-      prototype: Object.create(HTMLElement.prototype, {
-        attachedCallback: {
-          value: function () {
-            var template = document.getElementById('icon-x');
-            var clone = document.importNode(template.content, true);
-            this.createShadowRoot().appendChild(clone);
-          }
-        },
-      })
-    });
-  });
+class IconXElement extends HTMLElement {
+  connectedCallback() {
+    let template = document.getElementById('icon-x');
+    let clone = document.importNode(template.content, true);
+    this.attachShadow({mode: 'open'}).appendChild(clone);
+  }
+}
+document.addEventListener('DOMContentLoaded', function () {
+  'use-strict';
+  window.customElements.define('icon-x', IconXElement);
+});
 </script>
 
 <!--
@@ -223,23 +215,21 @@ THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH RE
       18.863,77.5 49.957,23.644 81.051,77.5 "/>
   </svg>
 </template>
-<script type="text/javascript" charset="utf-8">
-  document.addEventListener('DOMContentLoaded', function () {
-    'use-strict';
 
-    window.IconDangerElement = document.registerElement('icon-danger', {
-      prototype: Object.create(HTMLElement.prototype, {
-        attachedCallback: {
-          value: function () {
-            var template = document.getElementById('icon-danger');
-            var clone = document.importNode(template.content, true);
-            this.createShadowRoot().appendChild(clone);
-          }
-        },
-      })
-    });
-  });
+<script type="text/javascript" charset="utf-8">
+class IconDangerElement extends HTMLElement {
+  connectedCallback() {
+    let template = document.getElementById('icon-danger');
+    let clone = document.importNode(template.content, true);
+    this.attachShadow({mode: 'open'}).appendChild(clone);
+  }
+}
+document.addEventListener('DOMContentLoaded', function () {
+  'use-strict';
+  window.customElements.define('icon-danger', IconDangerElement);
+});
 </script>
+
 <!--
   Web Component: Icon Warning
 -->
@@ -253,23 +243,21 @@ THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH RE
     <rect x="28.558" y="28.56" transform="matrix(0.7071 0.7071 -0.7071 0.7071 50.0008 -20.7098)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" width="42.881" height="42.881"/>
   </svg>
 </template>
-<script type="text/javascript" charset="utf-8">
-  document.addEventListener('DOMContentLoaded', function () {
-    'use-strict';
 
-    window.IconWarningElement = document.registerElement('icon-warning', {
-      prototype: Object.create(HTMLElement.prototype, {
-        attachedCallback: {
-          value: function () {
-            var template = document.getElementById('icon-warning');
-            var clone = document.importNode(template.content, true);
-            this.createShadowRoot().appendChild(clone);
-          }
-        },
-      })
-    });
-  });
+<script type="text/javascript" charset="utf-8">
+class IconWarningElement extends HTMLElement {
+  connectedCallback() {
+    let template = document.getElementById('icon-warning');
+    let clone = document.importNode(template.content, true);
+    this.attachShadow({mode: 'open'}).appendChild(clone);
+  }
+}
+document.addEventListener('DOMContentLoaded', function () {
+  'use-strict';
+  window.customElements.define('icon-warning', IconWarningElement);
+});
 </script>
+
 <!--
   Web Component: Icon Success
 -->
@@ -282,23 +270,21 @@ THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH RE
     <circle fill="none" stroke="#FFFFFF" stroke-width="2" stroke-miterlimit="10" cx="49.95" cy="50.198" r="29.416"/>
   </svg>
 </template>
-<script type="text/javascript" charset="utf-8">
-  document.addEventListener('DOMContentLoaded', function () {
-    'use-strict';
 
-    window.IconSuccessElement = document.registerElement('icon-success', {
-      prototype: Object.create(HTMLElement.prototype, {
-        attachedCallback: {
-          value: function () {
-            var template = document.getElementById('icon-success');
-            var clone = document.importNode(template.content, true);
-            this.createShadowRoot().appendChild(clone);
-          }
-        },
-      })
-    });
-  });
+<script type="text/javascript" charset="utf-8">
+class IconSuccessElement extends HTMLElement {
+  connectedCallback() {
+    let template = document.getElementById('icon-success');
+    let clone = document.importNode(template.content, true);
+    this.attachShadow({mode: 'open'}).appendChild(clone);
+  }
+}
+document.addEventListener('DOMContentLoaded', function () {
+  'use-strict';
+  window.customElements.define('icon-success', IconSuccessElement);
+});
 </script>
+
 <!--
   Web Component: Icon Fail
 -->
@@ -312,21 +298,19 @@ THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH RE
     <circle fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" cx="49.95" cy="50.198" r="29.416"/>
   </svg>
 </template>
-<script type="text/javascript" charset="utf-8">
-  document.addEventListener('DOMContentLoaded', function () {
-    'use-strict';
 
-    window.IconFailElement = document.registerElement('icon-fail', {
-      prototype: Object.create(HTMLElement.prototype, {
-        attachedCallback: {
-          value: function () {
-            var template = document.getElementById('icon-fail');
-            var clone = document.importNode(template.content, true);
-            this.createShadowRoot().appendChild(clone);
-          }
-        },
-      })
-    });
-  });
+<script type="text/javascript" charset="utf-8">
+class IconFailElement extends HTMLElement {
+  connectedCallback() {
+    let template = document.getElementById('icon-fail');
+    let clone = document.importNode(template.content, true);
+    this.attachShadow({mode: 'open'}).appendChild(clone);
+  }
+}
+document.addEventListener('DOMContentLoaded', function () {
+  'use-strict';
+  window.customElements.define('icon-fail', IconFailElement);
+});
 </script>
+
 <!-- END AlertBox Web Components -->

@@ -1,7 +1,7 @@
 var fs = require('fs');
 var path = require('path');
 var concat = require('broccoli-concat');
-var pickFiles = require('broccoli-static-compiler');
+var Funnel = require('broccoli-funnel');
 var mergeTrees = require('broccoli-merge-trees');
 
 var components = concat('lib', {
@@ -30,19 +30,9 @@ var components = concat('lib', {
   footer: '<!-- END AlertBox Web Components -->'
 });
 
-var example = pickFiles('example', {
+var example = new Funnel('example', {
   srcDir: '/',
   destDir: 'example'
 });
 
-var exampleDependencies = concat('bower_components', {
-  inputFiles: [
-    'jquery/dist/jquery.min.js',
-    'ember/ember.debug.js',
-    'ember/ember-template-compiler.js'
-  ],
-  outputFile: '/example/assets/vendor.js',
-  wrapInFunction: false,
-});
-
-module.exports = mergeTrees([components, example, exampleDependencies]);
+module.exports = mergeTrees([components, example]);
