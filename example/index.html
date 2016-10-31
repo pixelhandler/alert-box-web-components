@@ -10,18 +10,18 @@
   <h1>Alert Box</h1>
 
   <alert-box id="countdown-warning" class="fixed" type="warning">
-    <p class="message">
+    <p slot="message">
       Warning Alert Box w/ Countdown:<br>
       <span class="minutes">X</span> minutes <span class="seconds">X</span> seconds.
     </p>
-    <icon-warning class="icon"></icon-warning>
-    <icon-x class="close"></icon-x>
+    <icon-warning slot="icon"></icon-warning>
+    <icon-x slot="close"></icon-x>
   </alert-box>
 
   <template id="countdown-info">
-    <p class="message">Info Alert Box, Countdown is Over.</p>
-    <icon-info class="icon"></icon-info>
-    <icon-x class="close"></icon-x>
+    <p slot="message">Info Alert Box, Countdown is Over.</p>
+    <icon-info slot="icon"></icon-info>
+    <icon-x slot="close"></icon-x>
   </template>
 
   <button id="show-info-alert-box">Show Info Alert Box</button>
@@ -34,33 +34,33 @@
     <!-- Example static alert boxes -->
 
     <alert-box id="alert-box-info" type="info">
-      <p class="message">Info Alert Box.</p>
-      <icon-info class="icon"></icon-info>
-      <icon-x class="close"></icon-x>
+      <p slot="message">Info Alert Box.</p>
+      <icon-info slot="icon"></icon-info>
+      <icon-x slot="close"></icon-x>
     </alert-box>
 
     <alert-box id="alert-box-success" type="success">
-      <p class="message">Success Alert Box.</p>
-      <icon-success class="icon"></icon-success>
-      <icon-x class="close"></icon-x>
+      <p slot="message">Success Alert Box.</p>
+      <icon-success slot="icon"></icon-success>
+      <icon-x slot="close"></icon-x>
     </alert-box>
 
     <alert-box id="alert-box-warning" type="warning">
-      <p class="message">Warning Alert Box.</p>
-      <icon-warning class="icon"></icon-warning>
-      <icon-x class="close"></icon-x>
+      <p slot="message">Warning Alert Box.</p>
+      <icon-warning slot="icon"></icon-warning>
+      <icon-x slot="close"></icon-x>
     </alert-box>
 
     <alert-box id="alert-box-danger" type="danger">
-      <p class="message">Danger Alert Box.</p>
-      <icon-danger class="icon"></icon-danger>
-      <icon-x class="close"></icon-x>
+      <p slot="message">Danger Alert Box.</p>
+      <icon-danger slot="icon"></icon-danger>
+      <icon-x slot="close"></icon-x>
     </alert-box>
 
     <alert-box id="alert-box-fail" type="fail">
-      <p class="message">Fail Alert Box.</p>
-      <icon-fail class="icon"></icon-fail>
-      <span class="close">Oh, well.</span>
+      <p slot="message">Fail Alert Box.</p>
+      <icon-fail slot="icon"></icon-fail>
+      <span slot="close">Oh, well.</span>
     </alert-box>
 
   </section>
