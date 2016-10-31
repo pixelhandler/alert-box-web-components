@@ -23,10 +23,6 @@ Well don't really use that URL, but that is a copy of the dist file, instead ins
 
 ## Development
 
-The example directory shows a few alerts and one using Object.observe
-for data bindings.
-
-* `bower install`
 * `npm install`
 * `npm run start` launches broccoli (development) server
 * `npm run open` opens location <http://localhost:4200/example/>
@@ -59,6 +55,7 @@ links under the heading below. Use ctrl-C to stop.
 *Tutorials / Links*
 
 * [WebComponents.org](http://webcomponents.org)
+* [Custom Elements](https://customelements.io)
 * [Custom Elements - A Web Components Gallery for Modern Web Apps](http://customelements.io)
 * [Custom Elements: defining new elements in HTML - HTML5 Rocks](http://www.html5rocks.com/en/tutorials/webcomponents/customelements/)
 * [Introduction to Shadow DOM — WebComponents.org](http://webcomponents.org/articles/introduction-to-shadow-dom/)
