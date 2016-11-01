@@ -35,9 +35,12 @@ let example = new Funnel('example', {
   destDir: 'example'
 });
 
-let exampleDependencies = concat('node_modules', {
+let exampleDependencies = concat('bower_components', {
   inputFiles: [
-    'webcomponents.js/webcomponents.js'
+    'custom-elements/custom-elements.min.js',
+    'shadycss/shadycss.min.js',
+    'shadydom/shadydom.min.js',
+    'webcomponentsjs/HTMLImports.min.js'
   ],
   outputFile: '/example/assets/vendor.js',
   wrapInFunction: false,

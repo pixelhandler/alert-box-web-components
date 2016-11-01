@@ -28,5 +28,11 @@
     "Brocfile.js",
     "package.json"
   ],
-  "dependencies": {}
+  "dependencies": {},
+  "devDependencies": {
+    "shadydom": "webcomponents/shadydom",
+    "shadycss": "webcomponents/shadycss",
+    "custom-elements": "^1.0.3",
+    "webcomponentsjs": "^0.7.22"
+  }
 }

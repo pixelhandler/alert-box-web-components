@@ -11,12 +11,25 @@
 
   // HTML Import, Web Component Template
   let link = document.querySelector('link[rel="import"]');
-  let templates = link.import.querySelectorAll('template');
-  for (let i = 0; i < templates.length; i++) {
-    document.querySelector('body').appendChild(templates[i]);
+  if (!link.import) {  
+    //document.addEventListener('HTMLImportsLoaded', function() {});
+    link.addEventListener('load', setupTemplates);
+  } else {
+    setupTemplates();
   }
 
-  let alertBoxFactory = function (template, type, className) {
+  ready(function() {
+    new Countdown(20 /* seconds */);
+  });
+
+  function setupTemplates() {
+    let templates = link.import.querySelectorAll('template');
+    for (let i = 0; i < templates.length; i++) {
+      document.querySelector('body').appendChild(templates[i]);
+    }
+  }
+
+  function alertBoxFactory(template, type, className) {
     let alertBox = document.createElement('alert-box');
     alertBox.setAttribute('type', type || 'info');
     if (className) {
@@ -26,7 +39,7 @@
     alertBox.appendChild(clone);
 
     return alertBox;
-  };
+  }
 
 
 ready(function() {
@@ -123,9 +136,5 @@ ready(function() {
     let alertBox = alertBoxFactory(template, 'info', 'fixed');
     document.querySelector('body').appendChild(alertBox);
   }
-
-ready(function(){
-  let timer = new Countdown(20 /* seconds */);
-});
 
 }());
